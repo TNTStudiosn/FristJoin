@@ -29,13 +29,21 @@ public class RulesManager {
 
     private static void createDefaultRules() {
         List<String> defaultRules = List.of(
-                "Bienvenido al servidor de TNT Studios.",
+                "Bienvenido al servidor de TNTStudios.",
                 "1. Respeta a todos los jugadores.",
                 "2. No uses hacks o cheats.",
                 "3. No hagas spam en el chat.",
                 "4. Prohibido el griefing en zonas protegidas.",
                 "5. Usa el sentido común para mantener la convivencia.",
-                "7. La última página requiere aceptar para continuar."
+                "6. No está permitido el lenguaje ofensivo o discriminatorio.",
+                "7. Evita el abuso de bugs o glitches; repórtalos al staff.",
+                "8. No está permitido el comercio de cuentas o ítems por dinero real.",
+                "9. Mantén el chat limpio: no uses mayúsculas excesivas.",
+                "10. Respetar las decisiones del staff; su palabra es final.",
+                "11. No se permite la suplantación de identidad de otros jugadores o staff.",
+                "12. Las construcciones ofensivas o inapropiadas serán eliminadas.",
+                "13. No hagas publicidad de otros servidores sin permiso.",
+                "14. La última página requiere aceptar para continuar."
         );
 
         try {
