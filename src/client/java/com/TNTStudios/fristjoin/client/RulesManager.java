@@ -2,20 +2,23 @@ package com.TNTStudios.fristjoin.client;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.*;
 import java.lang.reflect.Type;
 import java.util.List;
 
 public class RulesManager {
-    private static final File RULES_FILE = new File("config/fristjoin/rules.json");
+    // Se usa el directorio de config de Fabric
+    private static final File CONFIG_DIR = FabricLoader.getInstance().getConfigDir().resolve("fristjoin").toFile();
+    private static final File RULES_FILE = new File(CONFIG_DIR, "rules.json");
 
     public static List<String> loadRules() {
         if (!RULES_FILE.exists()) {
             createDefaultRules();
         }
 
-        try (InputStreamReader reader = new InputStreamReader(new FileInputStream(RULES_FILE))) {
+        try (Reader reader = new FileReader(RULES_FILE)) {
             Type listType = new TypeToken<List<String>>() {}.getType();
             return new Gson().fromJson(reader, listType);
         } catch (Exception e) {
@@ -32,19 +35,14 @@ public class RulesManager {
                 "3. No hagas spam en el chat.",
                 "4. Prohibido el griefing en zonas protegidas.",
                 "5. Usa el sentido común para mantener la convivencia.",
-                "6. No se permite lenguaje ofensivo o discriminatorio.",
                 "7. La última página requiere aceptar para continuar."
         );
 
         try {
-            // Verifica si el directorio existe, si no, lo crea
-            File parentDir = RULES_FILE.getParentFile();
-            if (parentDir != null && !parentDir.exists()) {
-                parentDir.mkdirs();
+            if (!CONFIG_DIR.exists()) {
+                CONFIG_DIR.mkdirs();
             }
-
-            // Crea el archivo con las reglas por defecto
-            try (FileWriter writer = new FileWriter(RULES_FILE)) {
+            try (Writer writer = new FileWriter(RULES_FILE)) {
                 new Gson().toJson(defaultRules, writer);
             }
         } catch (IOException e) {
