@@ -1,4 +1,3 @@
-// src/client/java/com/TNTStudios/fristjoin/client/RulesScreen.java
 package com.TNTStudios.fristjoin.client;
 
 import net.minecraft.client.gui.screen.Screen;
@@ -18,8 +17,8 @@ import java.util.List;
 public class RulesScreen extends Screen {
     private final List<String> rules;
     private int currentPage = 0;
-    private final int maxLinesPerPage = 5; // Máximo de líneas por página
-    private static final File CONFIG_FILE = new File("config/fristjoin_status.json");
+    private final int maxLinesPerPage = 5;
+    private static final File CONFIG_FILE = new File("config/fristjoin/fristjoin_status.json");
 
     protected RulesScreen(List<String> rules) {
         super(Text.of("Reglas del Servidor"));
@@ -96,7 +95,7 @@ public class RulesScreen extends Screen {
                 e.printStackTrace();
             }
         }
-        return true; // Mostrar reglas si no hay archivo o hay un error
+        return true;
     }
 
     @Override
